@@ -1,6 +1,9 @@
 # bmxandtraining
 
 > testing vuejs
+with vue-cli
+
+https://github.com/vuejs/vue-cli
 
 ## Build Setup
 
