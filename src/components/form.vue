@@ -30,40 +30,35 @@
   export default {
     name: 'form',
 
-   data: {
+   data() {
     label: {
-     name: "Name: ",
-     email: "Email: ",
-     message: "Message: ",
+     name: "Name: ";
+     email: "Email: ";
+     message: "Message: ";
      submit: "Submit"
-    },
+    }
    placeholder: {
-    name: "Place your name",
-    email: "Place your email",
+    name: "Place your name";
+    email: "Place your email";
     message: "Place your message"
-   },
-   error: {
-    in: {
-     name: false,
-     email: false,
-     message: false,
-    },
+   };
+  
     text: {
-     name: "Name is required",
-     email: "Email is required",
+     name: "Name is required";
+     email: "Email is required";
      message: "Message is required"
     }
    }
-  },
+  }
  methods: {
-  submitForm: function(event) {
+  submitForm (event) 
     console.log(event.target);
     console.log(this.name);
     console.log(this.email);
     console.log(this.message);
   }
- }
-};
+ 
+;
 
 
 

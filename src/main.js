@@ -19,6 +19,45 @@ Vue.use(Vuetify)
 import SocialSharing from 'vue-social-sharing';
  Vue.use(SocialSharing);
 
+
+import VeeValidate from 'vee-validate';
+Vue.use(VeeValidate);
+
+import VueRouter from 'vue-router';
+Vue.use(VueRouter);
+
+const router = new VueRouter(
+  {
+    mode: 'history',
+    scrollBehavior : function(to, from, savedPosition) {
+  if (to.hash) {
+    return {
+      selector: to.hash
+    }
+  } else {
+    return {
+      x: 0,
+      y: 0
+    }
+  }
+},
+    routes: [{
+      path: '/',
+      component: require( './components/Hello.vue')
+    },
+    {
+      path: '/a',
+      component: require( './components/Bmxtrain.vue')
+    },
+    {
+      path:'*',
+      redirect:'/'
+    }
+       
+    ]
+  }
+)
+
 // import Parallax from 'vue-parallaxy'
 // Vue.use(Parallax);
 // Vue.use(BootstrapVue);
@@ -29,6 +68,7 @@ Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  router,
   template: '<App/>',
   components: {
     App

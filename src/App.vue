@@ -1,6 +1,9 @@
 <template>
   <v-app height="415px">
     <v-navigation-drawer persistent light :mini-variant.sync="mini" v-model="drawer">
+      <router-link to="/">Accueil</router-link>
+      <router-link to="/a">train</router-link>
+      <router-link :to="{path: '/', hash: 'foo'}">Foo</router-link>
       <v-list dense>
         <v-list-tile v-for="item in items" :key="item.text">
           <v-list-tile-action>
@@ -12,70 +15,57 @@
             </v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-        <v-subheader class="mt-3 grey--text text--darken-1">SUBSCRIPTIONS</v-subheader>
+        <v-subheader class="mt-3 grey--text text--darken-1">Help us to promote this Website</v-subheader>
         <v-list>
-          <v-list-tile v-for="item in items2" :key="item.text" avatar>
-            <v-list-tile-avatar>
-              <img :src="`https://randomuser.me/api/portraits/men/${item.picture}.jpg`" alt="">
-            </v-list-tile-avatar>
-            <v-list-tile-title v-text="item.text"></v-list-tile-title>
-          </v-list-tile>
+          <social-sharing url="http://localhost:8080/" inline-template>
+            <div>
+              <div>
+                <network network="facebook">
+                  <i class="fa fa-facebook"></i> Facebook
+                </network>
+              </div>
+              <div>
+                <network network="googleplus">
+                  <i class="fa fa-google-plus"></i> Google +
+                </network>
+              </div>
+              <div>
+                <network network="linkedin">
+                  <i class="fa fa-linkedin"></i> LinkedIn
+                </network>
+                <div>
+                </div>
+                <network network="pinterest">
+                  <i class="fa fa-pinterest"></i> Pinterest
+                </network>
+                <div>
+                </div>
+                <network network="reddit">
+                  <i class="fa fa-reddit"></i> Reddit
+                </network>
+              </div>
+              <div>
+                <network network="twitter">
+                  <i class="fa fa-twitter"></i> Twitter
+                </network>
+              </div>
+
+            </div>
+          </social-sharing>
+
         </v-list>
-        <v-list-tile class="mt-3">
-          <v-list-tile-action>
-            <v-icon class="grey--text text--darken-1">add_circle_outline</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-title class="grey--text text--darken-1">Browse Channels</v-list-tile-title>
-        </v-list-tile>
-        <v-list-tile>
-          <v-list-tile-action>
-            <v-icon class="grey--text text--darken-1">settings</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-title class="grey--text text--darken-1">Manage Subscriptions</v-list-tile-title>
-        </v-list-tile>
       </v-list>
     </v-navigation-drawer>
     <v-toolbar fixed="true" class="red">
       <v-toolbar-title>
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-        <v-icon class="ml-3">fa-youtube</v-icon>
-        <social-sharing url="http://localhost:8080/" inline-template>
-          <div>
-            <network network="facebook">
-              <i class="fa fa-facebook"></i> Facebook
-            </network>
-            <network network="googleplus">
-              <i class="fa fa-google-plus"></i> Google +
-            </network>
-            <network network="linkedin">
-              <i class="fa fa-linkedin"></i> LinkedIn
-            </network>
-            <network network="pinterest">
-              <i class="fa fa-pinterest"></i> Pinterest
-            </network>
-            <network network="reddit">
-              <i class="fa fa-reddit"></i> Reddit
-            </network>
-            <network network="twitter">
-              <i class="fa fa-twitter"></i> Twitter
-            </network>
-            <network network="vk">
-              <i class="fa fa-vk"></i> VKontakte
-            </network>
-            <network network="weibo">
-              <i class="fa fa-weibo"></i> Weibo
-            </network>
-            <network network="whatsapp">
-              <i class="fa fa-whatsapp"></i> Whatsapp
-            </network>
-          </div>
-        </social-sharing>
+
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-text-field label="Search..." single-line append-icon="search" dark hide-details></v-text-field>
     </v-toolbar>
     <main>
-
+      <!--<router-view></router-view>-->
       <v-parallax id="paral" src="https://s-media-cache-ak0.pinimg.com/originals/82/4d/41/824d41a811ac057e2f3c5bd3f7695725.jpg"
         height="900">
         <v-layout>
@@ -84,24 +74,18 @@
         </v-layout>
       </v-parallax>
       <gallery></gallery>
-      <v-parallax id="paral" src="http://a.espncdn.com/photo/2013/0818/as_bmx_revolution7_2048.jpg" height="300">
+      <v-parallax id="paral" src="http://a.espncdn.com/photo/2013/0818/as_bmx_revolution7_2048.jpg" height="500">
       </v-parallax>
-      <Bmxtrain></Bmxtrain>
-      <v-parallax id="paral" src="http://sf.co.ua/14/05/wallpaper-1858701.jpg" height="300">
+     
+      <Bmxtrain id="foo"></Bmxtrain>
+      <v-parallax id="paral" src="http://sf.co.ua/14/05/wallpaper-1858701.jpg" height="900">
       </v-parallax>
-      <form></form>
+      <formulaire></formulaire>I
       <v-footer class="pa-3">
         <v-spacer></v-spacer>
         <div>© {{ new Date().getFullYear() }}</div>
       </v-footer>
       <!--<hello></hello>-->
-
-
-
-
-
-
-
 
 
     </main>
@@ -113,7 +97,7 @@
   import Hello from './components/Hello'
   import Gallery from './components/Gallery'
   import Bmxtrain from './components/Bmxtrain'
-  import form from './components/form'
+  import formulaire from './components/formulaire'
 
 
   export default {
@@ -122,7 +106,8 @@
       Hello,
       Gallery,
       Bmxtrain,
-      form
+      formulaire
+
 
 
     },
@@ -134,42 +119,20 @@
         },
         {
           icon: 'subscriptions',
-          text: 'Subscriptions'
+          text: 'Specific training'
         },
         {
           icon: 'history',
-          text: 'History'
+          text: 'Shop'
         },
         {
-          icon: 'featured_play_list',
-          text: 'Playlists'
+          icon: 'history',
+          text: 'Contact'
         },
-        {
-          icon: 'watch_later',
-          text: 'Watch Later'
-        }
+
+
       ],
-      items2: [{
-          picture: 28,
-          text: 'Joseph'
-        },
-        {
-          picture: 38,
-          text: 'Apple'
-        },
-        {
-          picture: 48,
-          text: 'Xbox Ahoy'
-        },
-        {
-          picture: 58,
-          text: 'Nokia'
-        },
-        {
-          picture: 78,
-          text: 'MKBHD'
-        },
-      ]
+
     })
   }
 
