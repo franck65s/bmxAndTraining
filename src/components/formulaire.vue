@@ -1,90 +1,49 @@
 <template>
-  <v-app>
-    <v-toolbar>
-      <v-toolbar-title>Toolbar</v-toolbar-title>
-    </v-toolbar>
-    <main>
-      <v-content>
-        <v-container fluid>
-          <div class="title">
-            <form @submit.prevent="validateForm">
-              <v-row row>
-                <v-col xs12>
-                  <v-text-field v-model="form.name" name="name" label="Name" hint="At least 8 characters" append-icon="remove_red_eye" v-bind:rules="rules.name"
-                    v-validate="'required'"></v-text-field>
-                </v-col>
-                <v-col xs12>
-                  <v-text-field v-model="form.email" name="email" label="Email" hint="At least 8 characters" append-icon="remove_red_eye" v-bind:rules="rules.email"
-                    v-validate="'required|email'"></v-text-field>
-                </v-col>
-                <v-col xs12>
-                  <v-dialog persistent v-model="modal" lazy>
-                    <v-text-field slot="activator" label="Picker in dialog" v-model="e3" prepend-icon="event" readonly></v-text-field>
-                    <v-date-picker v-model="e3" scrollable></v-date-picker>
-                  </v-dialog>
-                </v-col>
+ <form id="myform">
+<label>reply_to</label>
+<input type="text" name="reply_to" />
+<label>from_name</label>
+<input type="text" name="from_name" />
+<label>to_name</label>
+<input type="text" name="to_name" />
+<label>message_html</label>
+<input type="text" name="message_html" />
+<br><br>
+<button>
+Send
+</button>
+</form>
 
-                <v-col xs12>
-                  <v-menu lazy :close-on-content-click="false" v-model="menu" transition="v-scale-transition" offset-y :nudge-left="56">
-                    <v-text-field slot="activator" label="Picker in menu" v-model="e3" prepend-icon="event" readonly></v-text-field>
-                    <v-date-picker v-model="e3" no-title scrollable actions>
-                      <template scope="{ save, cancel }">
-                        <v-card-row actions>
-                          <v-btn flat primary @click.native="cancel()">Cancel</v-btn>
-                          <v-btn flat primary @click.native="save()">Save</v-btn>
-                        </v-card-row>
-                      </template>
-                    </v-date-picker>
-                  </v-menu>
-                </v-col>
-
-                <v-btn primary type="submit">Submit</v-btn>
-              </v-row>
-            </form>
-          </div>
-        </v-container>
-      </v-content>
-    </main>
-  </v-app>
 </template>
 
 <script>
+var myform = $("form#myform");
+myform.submit(function(event){
+	event.preventDefault();
+
+  // Change to your service ID, or keep using the default service
+  var service_id = "gmail";
+  var template_id = "template_e5nc4Q8i";
+
+  myform.find("button").text("Sending...");
+  emailjs.sendForm(service_id,template_id,"myform")
+  	.then(function(){ 
+    	alert("Sent!");
+       myform.find("button").text("Send");
+       console.log("test reussi")
+    }, function(err) {
+       alert("Send email failed!\r\n Response:\n " + JSON.stringify(err));
+       myform.find("button").text("Send");
+    });
+  return false;
+});
   export default {
     name: 'formulaire',
+    
 
-    data() {
-    return {
-      form: {
-        name: "",
-        email: ""
-      },
-      rules: {
-        name: [],
-        email: []
-      }
-    };
-  },
-  watch: {
-    errors: {
-      handler: function(val, oldVal) {
-        _.forEach(this.rules, (val, key) => {
-          this.rules[key] = [() => (this.errors.has(key) ? this.errors.first(key) : true)];
-        });
-      },
-      deep: true
-    },
-  },
-  methods: {
-    validateForm() {
-      this.$validator.validateAll()
-        .then(() => {
-          console.log("data", this.form);
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    }
-  }
+
+    //     // var myform = $("form#myform");
+
   }
 
 </script>

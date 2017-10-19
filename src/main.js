@@ -32,7 +32,8 @@ const router = new VueRouter(
     scrollBehavior : function(to, from, savedPosition) {
   if (to.hash) {
     return {
-      selector: to.hash
+      selector: to.hash,
+      offset: { x: 0, y: 80 }
     }
   } else {
     return {
@@ -45,10 +46,7 @@ const router = new VueRouter(
       path: '/',
       component: require( './components/Hello.vue')
     },
-    {
-      path: '/a',
-      component: require( './components/Bmxtrain.vue')
-    },
+   
     {
       path:'*',
       redirect:'/'

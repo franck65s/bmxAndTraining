@@ -1,11 +1,24 @@
 <template>
+
   <v-app height="415px">
     <v-navigation-drawer persistent light :mini-variant.sync="mini" v-model="drawer">
-      <router-link to="/">Accueil</router-link>
-      <router-link to="/a">train</router-link>
-      <router-link :to="{path: '/', hash: 'foo'}">Foo</router-link>
+      <ul>
+        <li>
+          <router-link to="/">Accueil</router-link>
+        </li>
+        <li>
+          <router-link :to="{path: '/', hash: 'Bmxtrain'}">Bmx training</router-link>
+        </li>
+        <li>
+          <router-link :to="{path: '/', hash: 'Bmxgallery'}"> Videos</router-link>
+        </li>
+        <li>
+          <router-link :to="{path: '/', hash: 'Contact'}"> Contact</router-link>
+        </li>
+      </ul>
+
       <v-list dense>
-        <v-list-tile v-for="item in items" :key="item.text">
+        <!--<v-list-tile v-for="item in items" :key="item.text">
           <v-list-tile-action>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-tile-action>
@@ -14,43 +27,43 @@
               {{ item.text }}
             </v-list-tile-title>
           </v-list-tile-content>
-        </v-list-tile>
+        </v-list-tile>-->
         <v-subheader class="mt-3 grey--text text--darken-1">Help us to promote this Website</v-subheader>
         <v-list>
           <social-sharing url="http://localhost:8080/" inline-template>
-            <div>
-              <div>
+            <ul>
+              <li>
                 <network network="facebook">
                   <i class="fa fa-facebook"></i> Facebook
                 </network>
-              </div>
-              <div>
+              </li>
+              <li>
                 <network network="googleplus">
                   <i class="fa fa-google-plus"></i> Google +
                 </network>
-              </div>
-              <div>
+              </li>
+              <li>
                 <network network="linkedin">
                   <i class="fa fa-linkedin"></i> LinkedIn
                 </network>
-                <div>
-                </div>
+              </li>
+              <li>
                 <network network="pinterest">
                   <i class="fa fa-pinterest"></i> Pinterest
                 </network>
-                <div>
-                </div>
+              </li>
+              <li>
                 <network network="reddit">
                   <i class="fa fa-reddit"></i> Reddit
                 </network>
-              </div>
-              <div>
+              </li>
+              <li>
                 <network network="twitter">
                   <i class="fa fa-twitter"></i> Twitter
                 </network>
-              </div>
+              </li>
 
-            </div>
+            </ul>
           </social-sharing>
 
         </v-list>
@@ -59,37 +72,51 @@
     <v-toolbar fixed="true" class="red">
       <v-toolbar-title>
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-text-field label="Search..." single-line append-icon="search" dark hide-details></v-text-field>
     </v-toolbar>
+
+  
+
     <main>
-      <!--<router-view></router-view>-->
-      <v-parallax id="paral" src="https://s-media-cache-ak0.pinimg.com/originals/82/4d/41/824d41a811ac057e2f3c5bd3f7695725.jpg"
-        height="900">
-        <v-layout>
-          <h1 class="white--text">Boost Your Roots</h1>
-          <h4 class="white--text">Free ressources from web around bmx and training</h4>
-        </v-layout>
-      </v-parallax>
-      <gallery></gallery>
-      <v-parallax id="paral" src="http://a.espncdn.com/photo/2013/0818/as_bmx_revolution7_2048.jpg" height="500">
-      </v-parallax>
-     
-      <Bmxtrain id="foo"></Bmxtrain>
-      <v-parallax id="paral" src="http://sf.co.ua/14/05/wallpaper-1858701.jpg" height="900">
-      </v-parallax>
-      <formulaire></formulaire>I
-      <v-footer class="pa-3">
-        <v-spacer></v-spacer>
-        <div>© {{ new Date().getFullYear() }}</div>
-      </v-footer>
-      <!--<hello></hello>-->
+  
+        <v-parallax id="paral" src="https://s-media-cache-ak0.pinimg.com/originals/82/4d/41/824d41a811ac057e2f3c5bd3f7695725.jpg"
+          height="900">
+          <v-layout>
+            <h1 class="white--text">Boost Your Roots</h1>
+            <h4 class="white--text">Free ressources from web around bmx and training</h4>
+          </v-layout>
+        </v-parallax>
+
+        <div id="Bmxgallery">
+          <gallery></gallery>
+        </div>
+
+        <v-parallax id="paral" src="http://a.espncdn.com/photo/2013/0818/as_bmx_revolution7_2048.jpg" height="500">
+        </v-parallax>
+        <div id="Bmxtrain">
+
+          <Bmxtrain></Bmxtrain>
+        </div>
+        <v-parallax id="paral" src="http://sf.co.ua/14/05/wallpaper-1858701.jpg" height="900">
+        </v-parallax>
+        <div id="Contact">
+
+          <formulaire></formulaire>I
+        </div>
 
 
+        <v-footer class="pa-3">
+          <v-spacer></v-spacer>
+          <div>© {{ new Date().getFullYear() }}</div>
+        </v-footer>
+        <!--<hello></hello>-->
+  
     </main>
+
   </v-app>
+
 </template>
 
 <script>
