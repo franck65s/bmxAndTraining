@@ -42,7 +42,8 @@ const router = new VueRouter(
     }
   }
 },
-    routes: [{
+    routes: [
+      {
       path: '/',
       component: require( './components/Hello.vue')
     },

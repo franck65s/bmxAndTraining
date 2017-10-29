@@ -1,68 +1,100 @@
 <template>
- <form id="myform">
-<label>reply_to</label>
-<input type="text" name="reply_to" />
-<label>from_name</label>
-<input type="text" name="from_name" />
-<label>to_name</label>
-<input type="text" name="to_name" />
-<label>message_html</label>
-<input type="text" name="message_html" />
-<br><br>
-<button>
+
+  <form id="myform" v-on:submit.prevent="displayForm">
+    <label>reply_to</label>
+    <input type="text" name="reply_to" />
+    <label>from_name</label>
+    <input type="text" name="from_name" />
+    <label>to_name</label>
+    <input type="text" name="to_name" />
+    <label>message_html</label>
+    <input type="text" name="message_html" />
+    <br><br>
+   <button>
 Send
 </button>
-</form>
-
+  </form>
 </template>
 
 <script>
-var myform = $("form#myform");
-myform.submit(function(event){
-	event.preventDefault();
-
   // Change to your service ID, or keep using the default service
-  var service_id = "gmail";
-  var template_id = "template_e5nc4Q8i";
 
-  myform.find("button").text("Sending...");
-  emailjs.sendForm(service_id,template_id,"myform")
-  	.then(function(){ 
-    	alert("Sent!");
-       myform.find("button").text("Send");
-       console.log("test reussi")
-    }, function(err) {
-       alert("Send email failed!\r\n Response:\n " + JSON.stringify(err));
-       myform.find("button").text("Send");
-    });
-  return false;
-});
   export default {
     name: 'formulaire',
     
+    methods : {
 
+  
+      displayForm: function(event){
+        var myform = $("form#myform");
+        myform.submit(function (event) {
+          event.preventDefault();
 
-    //     // var myform = $("form#myform");
+          var params = myform.serializeArray().reduce(function (obj, item) {
+            obj[item.name] = item.value;
+            return obj;
+          }, {});
+        })
+        var service_id = "default_service";
 
+        var template_id = "template_e5nc4Q8i";
+        myform.find("button").text("Sending...");
+        emailjs.send(service_id, template_id, params)
+          .then(function () {
+            alert("Sent!");
+            myform.find("button").text("Send");
+          }, function (err) {
+            alert("Send email failed!\r\n Response:\n " + JSON.stringify(err));
+            myform.find("button").text("Send");
+          });
+        return false;
+      }
+    }
   }
+  
 
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  #e3,
-  #e3 .container {
-    min-height: 700px;
-    overflow: hidden;
-    z-index: 0;
+  body {
+    font-family: arial;
+    font-size: 12px;
+    color: #666;
   }
 
-  #e3 .input-group__details:after {
-    background-color: rgba(255, 255, 255, 0.32) !important;
+  form {
+    width: 500px;
+    background: white;
+    padding: 20px 25px;
+    margin: auto;
+    margin-top: 30px;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
   }
 
-  #e3 .input-group--focused .input-group__append-icon {
-    color: inherit !important;
+  form input,
+  form textarea {
+    font: inherit;
+    padding: 5px 5px;
+    width: 100%;
+    margin-top: 3px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+  }
+
+  form button {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 8px 35px;
+    font-size: 12px;
+    background: #888;
+    color: white;
+  }
+
+  form label {
+    color: #777;
+    font-size: 11px;
+    margin-bottom: 2px;
+    display: block;
   }
 
 </style>

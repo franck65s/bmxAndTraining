@@ -1,7 +1,7 @@
 <template>
 
   <v-app height="415px">
-    <v-navigation-drawer persistent light :mini-variant.sync="mini" v-model="drawer">
+    <v-navigation-drawer persistent light  v-model="drawer">
       <ul>
         <li>
           <router-link to="/">Accueil</router-link>
@@ -102,9 +102,9 @@
         <v-parallax id="paral" src="http://sf.co.ua/14/05/wallpaper-1858701.jpg" height="900">
         </v-parallax>
         <div id="Contact">
-
-          <formulaire></formulaire>I
+          <formulaire></formulaire>
         </div>
+        <GoogleMap></GoogleMap>
 
 
         <v-footer class="pa-3">
@@ -125,6 +125,7 @@
   import Gallery from './components/Gallery'
   import Bmxtrain from './components/Bmxtrain'
   import formulaire from './components/formulaire'
+  import GoogleMap from './components/Googlemap'
 
 
   export default {
@@ -133,84 +134,30 @@
       Hello,
       Gallery,
       Bmxtrain,
-      formulaire
-
-
-
+      formulaire,
+      GoogleMap
     },
-    data: () => ({
-      drawer: true,
-      items: [{
-          icon: 'trending_up',
-          text: 'BMX vidéos'
-        },
-        {
-          icon: 'subscriptions',
-          text: 'Specific training'
-        },
-        {
-          icon: 'history',
-          text: 'Shop'
-        },
-        {
-          icon: 'history',
-          text: 'Contact'
-        },
-
-
-      ],
-
-    })
+    // data: () => ({
+    //   drawer: true,
+    //   items: [{
+    //       icon: 'trending_up',
+    //       text: 'BMX vidéos'
+    //     },
+    //     {
+    //       icon: 'subscriptions',
+    //       text: 'Specific training'
+    //     },
+    //     {
+    //       icon: 'history',
+    //       text: 'Shop'
+    //     },
+    //     {
+    //       icon: 'history',
+    //       text: 'Contact'
+    //     },
+    //   ],
+    // })
   }
-
-
-  //   data: () => ({
-  //     drawer: true,
-  //     items: [{
-  //         icon: 'trending_up',
-  //         text: 'Most Popular'
-  //       },
-  //       {
-  //         icon: 'subscriptions',
-  //         text: 'Subscriptions'
-  //       },
-  //       {
-  //         icon: 'history',
-  //         text: 'History'
-  //       },
-  //       {
-  //         icon: 'featured_play_list',
-  //         text: 'Playlists'
-  //       },
-  //       {
-  //         icon: 'watch_later',
-  //         text: 'Watch Later'
-  //       }
-  //     ],
-  //     items2: [{
-  //         picture: 28,
-  //         text: 'Joseph'
-  //       },
-  //       {
-  //         picture: 38,
-  //         text: 'Apple'
-  //       },
-  //       {
-  //         picture: 48,
-  //         text: 'Xbox Ahoy'
-  //       },
-  //       {
-  //         picture: 58,
-  //         text: 'Nokia'
-  //       },
-  //       {
-  //         picture: 78,
-  //         text: 'MKBHD'
-  //       },
-  //     ]
-  //   })
-  // }
-
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
