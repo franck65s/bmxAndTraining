@@ -10,14 +10,14 @@ import VueResource from 'vue-resource'
 Vue.use(VueResource)
 
 // import ('path/to/node_modules/vuetify/dist/vuetify.min.css') // Ensure you are using css-loader
- 
+
 
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css';
 Vue.use(Vuetify)
 
 import SocialSharing from 'vue-social-sharing';
- Vue.use(SocialSharing);
+Vue.use(SocialSharing);
 
 
 import VeeValidate from 'vee-validate';
@@ -25,37 +25,48 @@ Vue.use(VeeValidate);
 
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
+import VueBootstrapTable2 from 'vue-bootstrap-table2';
+Vue.use(VueBootstrapTable2);
 
-const router = new VueRouter(
-  {
-    mode: 'history',
-    scrollBehavior : function(to, from, savedPosition) {
-  if (to.hash) {
-    return {
-      selector: to.hash,
-      offset: { x: 0, y: 80 }
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-default/index.css';
+import ElTableWrapper from 'element-table-wrapper';
+
+
+Vue.use(ElementUI)
+Vue.use(ElTableWrapper)
+
+
+const router = new VueRouter({
+  mode: 'history',
+  scrollBehavior: function (to, from, savedPosition) {
+    if (to.hash) {
+      return {
+        selector: to.hash,
+        offset: {
+          x: 0,
+          y: 80
+        }
+      }
+    } else {
+      return {
+        x: 0,
+        y: 0
+      }
     }
-  } else {
-    return {
-      x: 0,
-      y: 0
-    }
-  }
-},
-    routes: [
-      {
+  },
+  routes: [{
       path: '/',
-      component: require( './components/Hello.vue')
+      component: require('./components/Hello.vue')
     },
-   
+
     {
-      path:'*',
-      redirect:'/'
+      path: '*',
+      redirect: '/'
     }
-       
-    ]
-  }
-)
+
+  ]
+})
 
 // import Parallax from 'vue-parallaxy'
 // Vue.use(Parallax);
@@ -71,6 +82,7 @@ new Vue({
   template: '<App/>',
   components: {
     App
-   
+
   }
 })
+

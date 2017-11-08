@@ -2,8 +2,7 @@
   <div id="container">
     <div class="gallery">
       <h1>Videos BMX race</h1>
-      <div>je teste le template</div>
-      <ul>
+        <ul>
         <li v-for="video in videos">
           <p> <a :href="'https://www.youtube.com/watch?v=' + video.snippet.resourceId.videoId">{{ video.snippet.title }} </a></p>
           <a :href="'https://www.youtube.com/watch?v=' + video.snippet.resourceId.videoId"><img :src="video.snippet.thumbnails.medium.url" :alt="video.snippet.title" :title="video.snippet.title" class="thumbnail"

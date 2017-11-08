@@ -1,9 +1,10 @@
 <template>
+  <div>
   <div class="container">
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
         <div class="lead-form">
-          <h1 class="text-center">Real-time Google Map Embedding - Vue JS 2</h1>
+          <h1 class="text-center">Cherche ta piste de Bmx</h1>
           <hr/>
           <div class="row">
             <div class="col-md-12">
@@ -31,6 +32,7 @@
   <!-- end of .container -->
   </div>
   <!-- end of #app -->
+            </div>
 </template>
 
 <script>

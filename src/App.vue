@@ -1,7 +1,7 @@
 <template>
 
   <v-app height="415px">
-    <v-navigation-drawer persistent light  v-model="drawer">
+    <v-navigation-drawer persistent light v-model="drawer">
       <ul>
         <li>
           <router-link to="/">Accueil</router-link>
@@ -77,42 +77,55 @@
       <v-text-field label="Search..." single-line append-icon="search" dark hide-details></v-text-field>
     </v-toolbar>
 
-  
+
 
     <main>
-  
-        <v-parallax id="paral" src="https://s-media-cache-ak0.pinimg.com/originals/82/4d/41/824d41a811ac057e2f3c5bd3f7695725.jpg"
-          height="900">
-          <v-layout>
-            <h1 class="white--text">Boost Your Roots</h1>
-            <h4 class="white--text">Free ressources from web around bmx and training</h4>
-          </v-layout>
-        </v-parallax>
 
-        <div id="Bmxgallery">
-          <gallery></gallery>
-        </div>
+      <v-parallax id="paral" src="https://s-media-cache-ak0.pinimg.com/originals/82/4d/41/824d41a811ac057e2f3c5bd3f7695725.jpg"
+        height="900">
+        <v-layout>
+          <h1 class="white--text">Boost Your Roots</h1>
+          <h4 class="white--text">Free ressources from web around bmx and training</h4>
+        </v-layout>
+      </v-parallax>
 
-        <v-parallax id="paral" src="http://a.espncdn.com/photo/2013/0818/as_bmx_revolution7_2048.jpg" height="500">
-        </v-parallax>
-        <div id="Bmxtrain">
+      <div id="Bmxgallery">
+        <gallery></gallery>
+      </div>
 
-          <Bmxtrain></Bmxtrain>
-        </div>
-        <v-parallax id="paral" src="http://sf.co.ua/14/05/wallpaper-1858701.jpg" height="900">
-        </v-parallax>
-        <div id="Contact">
-          <formulaire></formulaire>
-        </div>
+      <v-parallax id="paral" src="http://a.espncdn.com/photo/2013/0818/as_bmx_revolution7_2048.jpg" height="500">
+      </v-parallax>
+      <div id="Bmxtrain">
+
+        <Bmxtrain></Bmxtrain>
+      </div>
+      <v-parallax id="paral" src="http://sf.co.ua/14/05/wallpaper-1858701.jpg" height="900">
+      </v-parallax>
+      <div id="Contact">
+        <formulaire></formulaire>
+      </div>
+      <v-parallax id="paral" src="http://chrispiascik.com/wp-content/uploads/2014/09/1718-20140922-BMX-jumble.jpg" height="300">
+      </v-parallax>
+      <div>
         <GoogleMap></GoogleMap>
+      </div>
+
+      <div>
+        <Grid></Grid>
+      </div>
 
 
-        <v-footer class="pa-3">
-          <v-spacer></v-spacer>
-          <div>© {{ new Date().getFullYear() }}</div>
-        </v-footer>
-        <!--<hello></hello>-->
-  
+
+      <v-footer class="pa-3">
+        <v-spacer></v-spacer>
+        <div>© {{ new Date().getFullYear() }}</div>
+      </v-footer>
+      <!--<hello></hello>-->
+      <!-- component template -->
+
+
+      <!-- demo root element -->
+
     </main>
 
   </v-app>
@@ -126,6 +139,7 @@
   import Bmxtrain from './components/Bmxtrain'
   import formulaire from './components/formulaire'
   import GoogleMap from './components/Googlemap'
+  import Grid from './components/Grid'
 
 
   export default {
@@ -135,29 +149,17 @@
       Gallery,
       Bmxtrain,
       formulaire,
-      GoogleMap
+      GoogleMap,
+      Grid,
+
+
     },
-    // data: () => ({
-    //   drawer: true,
-    //   items: [{
-    //       icon: 'trending_up',
-    //       text: 'BMX vidéos'
-    //     },
-    //     {
-    //       icon: 'subscriptions',
-    //       text: 'Specific training'
-    //     },
-    //     {
-    //       icon: 'history',
-    //       text: 'Shop'
-    //     },
-    //     {
-    //       icon: 'history',
-    //       text: 'Contact'
-    //     },
-    //   ],
-    // })
+    data: () => ({
+      drawer: true,
+
+    })
   }
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
